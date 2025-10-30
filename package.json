@@ -9,9 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
+    "install": "^0.13.0",
+    "locomotive-scroll": "^5.0.0-beta.21",
+    "next": "16.0.1",
+    "npm": "^11.6.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "sass": "^1.93.2"
   },
   "devDependencies": {
     "eslint": "^9",
