@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Preloader from '../components/Preloader';
 import Landing from '../components/Landing';
+import TextClip from '../components/TextClip';
+import Description from '../components/Description';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +29,8 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <Landing />
+      <TextClip />
+      <Description />
     </main>
   );
 }

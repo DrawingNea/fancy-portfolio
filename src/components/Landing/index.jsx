@@ -16,30 +16,44 @@ export default function Home() {
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Track scroll direction
     gsap.to(slider.current, {
       scrollTrigger: {
         trigger: document.documentElement,
         scrub: 0.25,
         start: 0,
         end: window.innerHeight,
-        onUpdate: (e) => (direction = e.direction * -1),
+        onUpdate: (self) => {
+          direction = self.direction * -1;
+        },
       },
-      x: '-500px',
     });
+
+    // Position second text to the right of the first
+    gsap.set(secondText.current, { xPercent: 100 });
+
+    const speed = 0.1; // adjust for speed
+
+    const animate = () => {
+      // Move the xPercent based on direction
+      xPercent += speed * direction;
+
+      // Wrap around smoothly
+      if (xPercent <= -100) {
+        xPercent = 0;
+      } else if (xPercent >= 0) {
+        xPercent = -100;
+      }
+
+      gsap.set(firstText.current, { xPercent });
+      gsap.set(secondText.current, { xPercent });
+
+      requestAnimationFrame(animate);
+    };
+
     requestAnimationFrame(animate);
   }, []);
-
-  const animate = () => {
-    if (xPercent < -100) {
-      xPercent = 0;
-    } else if (xPercent > 0) {
-      xPercent = -100;
-    }
-    gsap.set(firstText.current, { xPercent: xPercent });
-    gsap.set(secondText.current, { xPercent: xPercent });
-    requestAnimationFrame(animate);
-    xPercent += 0.1 * direction;
-  };
 
   return (
     <motion.main
