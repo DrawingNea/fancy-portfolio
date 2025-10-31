@@ -3,26 +3,53 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  padding: 10px;
+  padding: 30px;
   box-sizing: border-box;
   cursor: pointer;
   mix-blend-mode: difference;
   z-index: 101;
-  .burger {
-    position: relative;
+  .button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.253);
+    cursor: pointer;
     display: flex;
-    gap: 8px;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .burger {
     padding: 30px;
     pointer-events: none;
     &::before,
     &::after {
+      position: relative;
       display: block;
       content: '';
       width: 30px;
       height: 2px;
       mix-blend-mode: difference;
       background-color: white;
+      transition: transform 0.3s;
+    }
+
+    &::after {
+      top: -5px;
+    }
+
+    &::before {
+      top: 5px;
+    }
+  }
+  .burgerActive {
+    &::after {
+      transform: rotate(45deg);
+      top: -1px;
+    }
+
+    &::before {
+      transform: rotate(-45deg);
+      top: 0px;
     }
   }
   .bounds {
