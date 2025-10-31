@@ -16,7 +16,7 @@ export default function TextSlider() {
     const unsubscribe = scrollYProgress.on('change', (e) => {
       paths.current.forEach((path, i) => {
         if (path) {
-          path.setAttribute('startOffset', `${-40 + i * 40 + e * 40}%`);
+          path.setAttribute('startOffset', `${-90 + i * 112 + e * 112}%`);
         }
       });
     });
@@ -37,10 +37,11 @@ export default function TextSlider() {
             <textPath
               key={i}
               ref={(ref) => (paths.current[i] = ref)}
-              startOffset={`${i * 40}%`}
+              startOffset={`${i * 112}%`}
               href="#curve"
             >
-              Curabitur
+              React.js - Next.js - Redux - Framer Motion - GSAP - Tailwind CSS -
+              Cypress - Git - Spring Boot - SQL
             </textPath>
           ))}
         </text>
