@@ -1,4 +1,5 @@
 .description {
+  height: 600px;
   padding-left: 200px;
   padding-right: 200px;
   margin-top: 200px;
@@ -31,8 +32,8 @@
       }
     }
     .button {
-      top: 80%;
-      left: calc(100% - 200px);
+      top: 20%;
+      left: calc(100% - 300px);
       width: 180px;
       height: 180px;
       background-color: #1c1d20;

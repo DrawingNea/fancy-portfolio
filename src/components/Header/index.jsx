@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './style.module.scss';
 import { AnimatePresence } from 'framer-motion';
-import Magnetic from '../Magnetic';
+import Magnetic from '../Magnetic/framer';
 import Nav from './nav';
 
 const Header = forwardRef(function Header(props, ref) {

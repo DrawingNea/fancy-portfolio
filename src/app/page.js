@@ -10,6 +10,7 @@ import TextGradient from '../components/TextGradient';
 import Description from '../components/Description';
 import Header from '../components/Header';
 import StickyCursor from '../components/StickyCursor';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +42,7 @@ export default function Home() {
       <TextParallax />
       <TextGradient />
       <Description />
+      <Footer />
     </main>
   );
 }

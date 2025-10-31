@@ -1,7 +1,12 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function Framer({ children }) {
+export default function Framer({
+  children,
+  stiffness = 300,
+  damping = 10,
+  mass = 0.5,
+}) {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -25,7 +30,7 @@ export default function Framer({ children }) {
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x, y }}
-      transition={{ type: 'spring', stiffness: 300, damping: 10, mass: 0.5 }}
+      transition={{ type: 'spring', stiffness, damping, mass }}
     >
       {children}
     </motion.div>

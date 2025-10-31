@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    height: 50px;
+    padding: 50px;
+    fill: #c8bdb0;
+    transition: fill 0.2s;
+    cursor: pointer;
+    &:hover {
+      fill: #455ce9;
+    }
+  }
+}
