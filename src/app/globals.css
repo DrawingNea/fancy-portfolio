@@ -1,5 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
     margin: 0px;
     overflow: hidden;
     cursor: wait;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
