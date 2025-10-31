@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.svg {
+  width: 100%;
+  margin-bottom: 10rem; // mb-40
+}
+
+.text {
+  font-size: 6px;
+  text-transform: uppercase;
+  fill: red;
+}
+
+.logosWrapper {
+  height: 200px;
+  background-color: black;
+  overflow: hidden;
+}
+
+.logosInner {
+  height: 100%;
+  background-color: #455ce9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem; // gap-10
+}
+
+.logoImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}

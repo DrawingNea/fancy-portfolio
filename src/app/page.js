@@ -11,6 +11,8 @@ import Description from '../components/Description';
 import Header from '../components/Header';
 import StickyCursor from '../components/StickyCursor';
 import Footer from '../components/Footer';
+import Projects from '../components/Projects';
+import TextSlider from '@/components/TextSlider';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +44,8 @@ export default function Home() {
       <TextParallax />
       <TextGradient />
       <Description />
-      <Footer />
+      <Projects />
+      <TextSlider />
     </main>
   );
 }
