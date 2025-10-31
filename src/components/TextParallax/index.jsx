@@ -58,7 +58,7 @@ export default function Index() {
 
 const Slide = ({ src, direction, left, progress }) => {
   const dir = direction === 'left' ? -1 : 1;
-  const translateX = useTransform(progress, [0, 1], [150 * dir, -150 * dir]);
+  const translateX = useTransform(progress, [0, 1], [700 * dir, -700 * dir]);
 
   return (
     <motion.div style={{ x: translateX, left: left }} className={styles.slide}>
