@@ -6,6 +6,7 @@ import Preloader from '../components/Preloader';
 import Landing from '../components/Landing';
 import TextClip from '../components/TextClip';
 import TextParallax from '../components/TextParallax';
+import TextGradient from '../components/TextGradient';
 import Description from '../components/Description';
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
       <Landing />
       <TextClip />
       <TextParallax />
+      <TextGradient />
       <Description />
     </main>
   );
