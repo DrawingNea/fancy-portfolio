@@ -30,48 +30,52 @@ export default function Index() {
 
   return (
     <>
-      <div className={styles.spacer} />
+      <div className={styles.spacerTop} />
       <div ref={container} className={styles.slideContainer}>
         <Slide
           src={Picture1}
           direction="left"
           left="-40%"
           progress={scrollYProgress}
+          title="Piano & Drums"
         />
         <Slide
           src={Picture2}
           direction="right"
           left="-25%"
           progress={scrollYProgress}
+          title="Gaming & Coding"
         />
         <Slide
           src={Picture3}
           direction="left"
           left="-75%"
           progress={scrollYProgress}
+          title="Cryptography & Mystery"
         />
       </div>
-      <div className={styles.spacer} />
+      <div className={styles.spacerBottom} />
     </>
   );
 }
 
-const Slide = ({ src, direction, left, progress }) => {
+const Slide = ({ src, direction, left, progress, title }) => {
   const dir = direction === 'left' ? -1 : 1;
-  const translateX = useTransform(progress, [0, 1], [700 * dir, -700 * dir]);
+  const translateX = useTransform(progress, [0, 1], [2000 * dir, -2000 * dir]);
 
   return (
     <motion.div style={{ x: translateX, left: left }} className={styles.slide}>
-      <Phrase src={src} />
-      <Phrase src={src} />
-      <Phrase src={src} />
+      <Phrase src={src} title={title} />
+      <Phrase src={src} title={title} />
+      <Phrase src={src} title={title} />
+      <Phrase src={src} title={title} />
     </motion.div>
   );
 };
 
-const Phrase = ({ src }) => (
+const Phrase = ({ src, title }) => (
   <div className={styles.phrase}>
-    <p>Front End Developer</p>
+    <p>{title}</p>
     <span className={styles.imageWrapper}>
       <Image style={{ objectFit: 'cover' }} src={src} alt="image" fill />
     </span>

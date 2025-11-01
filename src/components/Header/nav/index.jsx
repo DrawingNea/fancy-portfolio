@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import styles from './style.module.scss';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -8,27 +9,42 @@ import Curve from './Curve';
 import Footer from './Footer';
 
 const navItems = [
-  {
-    title: 'Home',
-    href: '/',
-  },
-  {
-    title: 'Work',
-    href: '/work',
-  },
-  {
-    title: 'About',
-    href: '/about',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-  },
+  { title: 'Home', href: '#home' },
+  { title: 'Work', href: '#work' },
+  { title: 'Skills', href: '#skills' },
+  { title: 'About', href: '#about' },
+  { title: 'Contact', href: '#contact' },
 ];
 
 export default function index() {
   const pathname = usePathname();
-  const [selectedIndicator, setSelectedIndicator] = useState(pathname);
+  const [selectedIndicator, setSelectedIndicator] = useState('#home');
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.querySelector(item.href))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the section that's most visible
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) {
+          const id = `#${visible.target.id}`;
+          setSelectedIndicator(id);
+        }
+      },
+      {
+        threshold: 0.5, // 50% of section must be visible
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   return (
     <motion.div

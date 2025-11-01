@@ -15,8 +15,9 @@
   }
 
   .slider {
-    position: relative;
+    display: flex;
     white-space: nowrap;
+    animation: moveLeft 20s linear infinite;
   }
 
   .slider p {
@@ -50,5 +51,14 @@
       transform: scale(2);
       margin-bottom: 10px;
     }
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

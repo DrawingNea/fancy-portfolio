@@ -41,11 +41,12 @@ export default function Home() {
       <StickyCursor stickyElement={stickyElement} />
       <Landing />
       <TextClip />
-      <TextParallax />
-      <TextGradient />
       <Description />
-      <Projects />
+      <TextGradient />
       <TextSlider />
+      <Projects />
+      <TextParallax />
+      <Footer />
     </main>
   );
 }

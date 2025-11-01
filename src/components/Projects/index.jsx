@@ -12,21 +12,25 @@ const projects = [
     title: 'NeatSeat',
     src: 'NeatSeat.png',
     color: '#000000',
+    category: 'Design & Development',
   },
   {
     title: 'Flexibble',
     src: 'Flexibble.png',
     color: '#8C8C8C',
+    category: 'Online Course Project',
   },
   {
     title: 'CarHub',
     src: 'CarHub.png',
     color: '#EFE8D3',
+    category: 'Online Course Project',
   },
   {
     title: 'Teamhero',
     src: 'Teamhero.webp',
     color: '#706D63',
+    category: 'Design & Development',
   },
 ];
 
@@ -104,72 +108,75 @@ export default function Home() {
   };
 
   return (
-    <main
-      onMouseMove={(e) => {
-        moveItems(e.clientX, e.clientY);
-      }}
-      className={styles.projects}
-    >
-      <div className={styles.body}>
-        {projects.map((project, index) => {
-          return (
-            <Project
-              index={index}
-              title={project.title}
-              manageModal={manageModal}
-              key={index}
-            />
-          );
-        })}
-      </div>
-      <>
-        <motion.div
-          ref={modalContainer}
-          variants={scaleAnimation}
-          initial="initial"
-          animate={active ? 'enter' : 'closed'}
-          className={styles.modalContainer}
-        >
-          <div
-            style={{ top: index * -100 + '%' }}
-            className={styles.modalSlider}
+    <section id="work">
+      <main
+        onMouseMove={(e) => {
+          moveItems(e.clientX, e.clientY);
+        }}
+        className={styles.projects}
+      >
+        <div className={styles.body}>
+          {projects.map((project, index) => {
+            return (
+              <Project
+                index={index}
+                title={project.title}
+                manageModal={manageModal}
+                category={project.category}
+                key={index}
+              />
+            );
+          })}
+        </div>
+        <>
+          <motion.div
+            ref={modalContainer}
+            variants={scaleAnimation}
+            initial="initial"
+            animate={active ? 'enter' : 'closed'}
+            className={styles.modalContainer}
           >
-            {projects.map((project, index) => {
-              const { src, color } = project;
-              return (
-                <div
-                  className={styles.modal}
-                  style={{ backgroundColor: color }}
-                  key={`modal_${index}`}
-                >
-                  <Image
-                    src={`/images/${src}`}
-                    width={300}
-                    height={0}
-                    alt="image"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
-        <motion.div
-          ref={cursor}
-          className={styles.cursor}
-          variants={scaleAnimation}
-          initial="initial"
-          animate={active ? 'enter' : 'closed'}
-        ></motion.div>
-        <motion.div
-          ref={cursorLabel}
-          className={styles.cursorLabel}
-          variants={scaleAnimation}
-          initial="initial"
-          animate={active ? 'enter' : 'closed'}
-        >
-          View
-        </motion.div>
-      </>
-    </main>
+            <div
+              style={{ top: index * -100 + '%' }}
+              className={styles.modalSlider}
+            >
+              {projects.map((project, index) => {
+                const { src, color } = project;
+                return (
+                  <div
+                    className={styles.modal}
+                    style={{ backgroundColor: color }}
+                    key={`modal_${index}`}
+                  >
+                    <Image
+                      src={`/images/${src}`}
+                      width={300}
+                      height={0}
+                      alt="image"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+          <motion.div
+            ref={cursor}
+            className={styles.cursor}
+            variants={scaleAnimation}
+            initial="initial"
+            animate={active ? 'enter' : 'closed'}
+          ></motion.div>
+          <motion.div
+            ref={cursorLabel}
+            className={styles.cursorLabel}
+            variants={scaleAnimation}
+            initial="initial"
+            animate={active ? 'enter' : 'closed'}
+          >
+            View
+          </motion.div>
+        </>
+      </main>{' '}
+    </section>
   );
 }
