@@ -20,9 +20,9 @@ export default function Home() {
   const stickyElement = useRef(null);
 
     useEffect(() => {
-      // simulate your preloader timing
       const timer = setTimeout(() => {
         setIsLoading(false);
+        document.body.style.cursor = 'default';
         window.scrollTo(0, 0);
       }, 2000);
 
@@ -69,8 +69,8 @@ export default function Home() {
         <AnimatePresence mode="wait">
           {isLoading && <Preloader />}
         </AnimatePresence>
-        <Header ref={stickyElement} />
-        <StickyCursor stickyElement={stickyElement} />
+        {!isLoading && <Header ref={stickyElement} />}
+        {!isLoading && <StickyCursor stickyElement={stickyElement} />}
         <section id="home" data-scroll-section>
           <Landing />
           <TextClip />
