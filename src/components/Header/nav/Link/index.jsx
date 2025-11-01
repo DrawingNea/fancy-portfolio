@@ -7,47 +7,41 @@ import { slide, scale } from '../../anim';
 export default function Index({ data, isActive, setSelectedIndicator }) {
   const { title, href, index } = data;
 
-  const smoothScrollTo = (distance) => {
-    const baseSpeed = 0.9;
-    const duration = distance * baseSpeed;
-
-    const startY = window.scrollY;
-    const startTime = performance.now();
-
-    const ease = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = ease(progress);
-      window.scrollTo(0, startY + distance * eased);
-
-      if (elapsed < duration) {
-        requestAnimationFrame(step);
-      }
-    };
-
-    requestAnimationFrame(step);
-  };
-
   const handleClick = (e) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const section = document.querySelector(href);
+    e.preventDefault();
+    const target = document.querySelector(data.href);
+    if (!target) return;
 
-      if (section) {
-        const startY = window.scrollY;
-        const targetY = section.getBoundingClientRect().top + startY;
-        const distance = targetY - startY;
+    if (window.locoScroll) {
+      window.locoScroll.scrollTo(target, {
+        offset: 0,
+        duration: 2,
+        easing: [0.25, 0.0, 0.35, 1.0],
+      });
+    } else {
+      const startY = window.scrollY;
+      const targetY = target.getBoundingClientRect().top + startY;
+      const distance = targetY - startY;
+      const duration = Math.abs(distance) * 0.9;
+      const startTime = performance.now();
 
-        // Use dynamic duration based on distance
-        smoothScrollTo(targetY, distance);
-        setSelectedIndicator(href);
-      }
+      const ease = (t) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const step = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = ease(progress);
+        window.scrollTo(0, startY + distance * eased);
+
+        if (elapsed < duration) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
     }
   };
-
   return (
     <motion.div
       className={styles.link}

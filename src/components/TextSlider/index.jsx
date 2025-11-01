@@ -25,29 +25,27 @@ export default function TextSlider() {
   }, [scrollYProgress]);
 
   return (
-    <section id="skills">
-      <div ref={container} className={styles.container}>
-        <svg className={styles.svg} viewBox="0 0 250 90">
-          <path
-            fill="none"
-            id="curve"
-            d="m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68"
-          />
-          <text className={styles.text}>
-            {[...Array(3)].map((_, i) => (
-              <textPath
-                key={i}
-                ref={(ref) => (paths.current[i] = ref)}
-                startOffset={`${i * 113}%`}
-                href="#curve"
-              >
-                React.js - Next.js - Redux - Framer Motion - GSAP - Tailwind CSS
-                - Cypress - Git - Spring Boot - SQL -
-              </textPath>
-            ))}
-          </text>
-        </svg>
-      </div>
-    </section>
+    <div ref={container} className={styles.container}>
+      <svg className={styles.svg} viewBox="0 0 250 90">
+        <path
+          fill="none"
+          id="curve"
+          d="m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68"
+        />
+        <text className={styles.text}>
+          {[...Array(3)].map((_, i) => (
+            <textPath
+              key={i}
+              ref={(ref) => (paths.current[i] = ref)}
+              startOffset={`${i * 113}%`}
+              href="#curve"
+            >
+              React.js - Next.js - Redux - Framer Motion - GSAP - Tailwind CSS -
+              Cypress - Git - Spring Boot - SQL -
+            </textPath>
+          ))}
+        </text>
+      </svg>
+    </div>
   );
 }
