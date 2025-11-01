@@ -26,25 +26,27 @@ export default function index() {
       .map((item) => document.querySelector(item.href))
       .filter(Boolean);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the section that's most visible
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible) {
-          const id = `#${visible.target.id}`;
-          setSelectedIndicator(id);
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 3; // look 1/3 down viewport
+      let currentSection = sections[0];
+
+      for (let sec of sections) {
+        const top = sec.offsetTop;
+        if (scrollPos >= top) {
+          currentSection = sec;
+        } else {
+          break;
         }
-      },
-      {
-        threshold: 0.5, // 50% of section must be visible
       }
-    );
 
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      setSelectedIndicator(`#${currentSection.id}`);
     };
+
+    // Listen to scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // set initial
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
