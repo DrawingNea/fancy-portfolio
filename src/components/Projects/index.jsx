@@ -9,28 +9,28 @@ import Rounded from '../../common/RoundedButton';
 
 const projects = [
   {
+    title: 'Teamhero',
+    src: 'Teamhero.webp',
+    color: '#edf2fb',
+    category: 'Design & Development',
+  },
+  {
     title: 'NeatSeat',
     src: 'NeatSeat.png',
-    color: '#000000',
+    color: '#004b23',
     category: 'Design & Development',
   },
   {
     title: 'Flexibble',
     src: 'Flexibble.png',
-    color: '#8C8C8C',
+    color: '#240046',
     category: 'Online Course Project',
   },
   {
     title: 'CarHub',
     src: 'CarHub.png',
-    color: '#EFE8D3',
+    color: '#000814',
     category: 'Online Course Project',
-  },
-  {
-    title: 'Teamhero',
-    src: 'Teamhero.webp',
-    color: '#706D63',
-    category: 'Design & Development',
   },
 ];
 

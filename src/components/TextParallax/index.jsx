@@ -1,8 +1,8 @@
 'use client';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import Picture1 from '../../../public/images/1.jpg';
-import Picture2 from '../../../public/images/2.jpg';
-import Picture3 from '../../../public/images/3.jpg';
+import Picture1 from '../../../public/images/piano.jpg';
+import Picture2 from '../../../public/images/pc.jpg';
+import Picture3 from '../../../public/images/book.jpg';
 import Lenis from 'lenis';
 
 import styles from './style.module.scss';
