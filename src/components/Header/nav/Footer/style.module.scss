@@ -4,4 +4,9 @@
   justify-content: space-between;
   font-size: 12px;
   gap: 40px;
+  a {
+    text-decoration: none;
+    color: rgb(153, 153, 153);
+    font-weight: 300;
+  }
 }
