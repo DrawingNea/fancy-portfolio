@@ -9,6 +9,13 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 90px;
   background: #fff;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 26px;
+  }
 }
 
 .container {

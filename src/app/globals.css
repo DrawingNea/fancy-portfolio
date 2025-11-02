@@ -10,10 +10,12 @@
   --shiny-cta-highlight-subtle: #8484ff;
 }
 
-body{
-    margin: 0px;
-    overflow: hidden;
-    cursor: wait;
+body {
+  margin: 0px;
+  overflow: hidden;
+  cursor: wait;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* iOS momentum */
 }
 
 @layer utilities {

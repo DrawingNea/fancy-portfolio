@@ -31,48 +31,13 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    let loco;
-    let mounted = true;
-
-    (async () => {
-      try {
-        const LocomotiveScroll = (await import('locomotive-scroll')).default;
-
-        loco = new LocomotiveScroll({
-          el: document.querySelector('[data-scroll-container]'),
-          smooth: true,
-          // tweak these for speed / smoothness
-          lerp: 0.08, // interpolation - smaller = smoother/slower
-          multiplier: 1, // global speed multiplier
-        });
-
-        locoRef.current = loco;
-        // expose for quick debugging or for components that don't use context
-        window.locoScroll = loco;
-
-        console.info('Locomotive initialized', loco);
-      } catch (err) {
-        console.warn('Failed to init locomotive-scroll:', err);
-      }
-    })();
-
-    return () => {
-      mounted = false;
-      if (loco) {
-        loco.destroy();
-        locoRef.current = null;
-        window.locoScroll = undefined;
-      }
-    };
-  }, []);
   return (
     <main className={styles.main} data-scroll-container>
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
       {!isLoading && <Header ref={stickyElement} />}
-      {!isLoading && <StickyCursor stickyElement={stickyElement} />}
+      {!isLoading && <StickyCursor stickyElement={stickyElement} />}{' '}
       <section id="home" data-scroll-section>
         <NewLanding2 />
         <TextClip />

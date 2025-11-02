@@ -1,6 +1,6 @@
-'use client'; // if you're using Next.js 13+ app router
+'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
@@ -10,10 +10,23 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function HeroSection() {
   const maskRef = useRef(null);
+  const cwRef = useRef(window.innerWidth);
+  const chRef = useRef(window.innerHeight);
+
+  const [screenWidth, setScreenWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
 
   useEffect(() => {
-    const cw = window.innerWidth;
-    const ch = window.innerHeight;
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const txt1X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
+  const txt2X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
+
+  useEffect(() => {
     const nWaves = 5;
     const waves = [];
     const amp = 10;
@@ -24,48 +37,56 @@ export default function HeroSection() {
     const mask = maskRef.current;
     if (!mask) return;
 
-    // Create waves (polygon elements in SVG)
-    for (let w = 0; w < nWaves; w++) {
-      const p = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'polygon'
-      );
-      waves.push(p);
-      mask.appendChild(p);
-      const fillAttr = w === 0 ? '#fff' : 'none';
-      const strokeAttr = w === 0 ? '' : '#fff';
-      const strokeDasharray = w === 0 ? '' : '2 4';
-      const strokeWidth = w === 0 ? '' : `${3 - (w / nWaves) * 3}`;
-      p.setAttribute('fill', fillAttr);
-      if (w !== 0) {
-        p.setAttribute('stroke', strokeAttr);
-        p.setAttribute('stroke-dasharray', strokeDasharray);
-        p.setAttribute('stroke-width', strokeWidth);
+    // Function to create waves (only polygons)
+    const createPolygons = () => {
+      // Remove only polygons, keep other elements (like <text>)
+      mask.querySelectorAll('polygon').forEach((p) => p.remove());
+
+      for (let w = 0; w < nWaves; w++) {
+        const p = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'polygon'
+        );
+        waves[w] = p;
+        mask.appendChild(p);
+
+        const fillAttr = w === 0 ? '#fff' : 'none';
+        const strokeAttr = w === 0 ? '' : '#fff';
+        const strokeDasharray = w === 0 ? '' : '2 4';
+        const strokeWidth = w === 0 ? '' : `${3 - (w / nWaves) * 3}`;
+
+        p.setAttribute('fill', fillAttr);
+        if (w !== 0) {
+          p.setAttribute('stroke', strokeAttr);
+          p.setAttribute('stroke-dasharray', strokeDasharray);
+          p.setAttribute('stroke-width', strokeWidth);
+        }
       }
-    }
+    };
+
+    createPolygons(); // initial polygons
+
+    const cwRef = { current: window.innerWidth };
+    const chRef = { current: window.innerHeight };
 
     gsap
       .timeline({ defaults: { duration: 1 }, delay: 0.9 })
       .from('.txt1', { opacity: 0, ease: 'power2.inOut' }, 0)
-      .to(window, { scrollTo: ch / 2 }, 0);
+      .to(window, { scrollTo: chRef.current / 2 }, 0);
 
-    // Fade out DEVELOPMENT text before next section
     ScrollTrigger.create({
       trigger: `.${styles.hero}`,
       start: 'bottom top+=1000',
       end: 'bottom top+=600',
       scrub: true,
-      animation: gsap.to('.txt2', {
-        opacity: 0,
-        ease: 'power1.out',
-      }),
+      animation: gsap.to('.txt2', { opacity: 0, ease: 'power1.out' }),
     });
 
     gsap.ticker.add((t) => {
-      if (waveY !== -window.scrollY) {
-        gsap.to(window, { duration: 1, waveY: Math.round(window.scrollY) });
-        waveY = -window.scrollY;
-      }
+      const cw = cwRef.current;
+      const ch = chRef.current;
+      const scrollY = window.scrollY;
+      if (waveY !== -scrollY) waveY = -scrollY;
 
       waves.forEach((p, k) => {
         const offset = ((1 - k / nWaves) * nWaves) / 6;
@@ -82,8 +103,12 @@ export default function HeroSection() {
     });
 
     const handleResize = () => {
-      // you might want to update cw, ch etc
+      cwRef.current = window.innerWidth;
+      chRef.current = window.innerHeight;
+      createPolygons(); // recreate polygons for new width/height
+      ScrollTrigger.refresh(); // refresh scroll triggers
     };
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -103,7 +128,7 @@ export default function HeroSection() {
             <rect width="750" height="120" fill="none" />
             <text
               className="txt2"
-              x="-200"
+              x={txt2X}
               y="0"
               stroke="#000"
               fill="#fff"
@@ -116,7 +141,7 @@ export default function HeroSection() {
             <rect width="750" height="120" fill="none" />
             <text
               className="txt1"
-              x="-200"
+              x={txt1X}
               y="0"
               fill="#fff"
               letterSpacing="0.15"
