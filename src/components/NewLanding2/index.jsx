@@ -103,25 +103,25 @@ export default function HeroSection() {
             <rect width="750" height="120" fill="none" />
             <text
               className="txt2"
-              x="0"
+              x="-200"
               y="0"
               stroke="#000"
               fill="#fff"
               strokeWidth="1.2px"
             >
-              DEVELOPMENT
+              FULLSTACK DEVELOPER
             </text>
           </g>
           <g id="txt1">
             <rect width="750" height="120" fill="none" />
             <text
               className="txt1"
-              x="107"
+              x="-200"
               y="0"
               fill="#fff"
               letterSpacing="0.15"
             >
-              ANIMATION
+              FRONTEND DEVELOPER
             </text>
           </g>
         </defs>
