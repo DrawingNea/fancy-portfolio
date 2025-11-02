@@ -96,7 +96,7 @@ export default function HeroSection() {
   return (
     <section className={styles.hero}>
       <div className={styles.scrollDist}></div>
-      <svg className={styles.container} width="100%" height="100%">
+      <svg className={styles.container}>
         <defs>
           <mask id="m" ref={maskRef}></mask>
           <g id="txt2">
