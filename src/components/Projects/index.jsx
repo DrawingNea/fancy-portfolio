@@ -17,7 +17,7 @@ const projects = [
   {
     title: 'NeatSeat',
     src: 'NeatSeat.png',
-    color: '#004b23',
+    color: '#1b4332',
     category: 'Design & Development',
   },
   {
@@ -29,7 +29,7 @@ const projects = [
   {
     title: 'CarHub',
     src: 'CarHub.png',
-    color: '#000814',
+    color: '#03045e',
     category: 'Online Course Project',
   },
 ];

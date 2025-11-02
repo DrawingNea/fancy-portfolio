@@ -5,7 +5,12 @@ import { motion } from 'framer-motion';
 import { slideUp } from './animation';
 import { Fragment } from 'react';
 
-const words = ['Frontend Developer', 'Frontend Developer'];
+const words = [
+  'Frontend Developer',
+  'Fullstack Developer',
+  'UI/UX Designer',
+  'Coffee-Fueled Coder',
+];
 
 export default function Home() {
   return (
