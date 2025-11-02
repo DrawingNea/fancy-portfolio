@@ -69,6 +69,7 @@ export default function index() {
               style={{
                 width: '200px',
                 textAlign: 'center',
+                textWrap: 'nowrap',
               }}
             >
               {copied === 'email' ? 'Copied!' : 'Evelyn.Lindner@outlook.com'}
@@ -80,6 +81,7 @@ export default function index() {
               style={{
                 width: '150px',
                 textAlign: 'center',
+                textWrap: 'nowrap',
               }}
             >
               {copied === 'phone' ? 'Copied!' : '+49 172 9822968'}

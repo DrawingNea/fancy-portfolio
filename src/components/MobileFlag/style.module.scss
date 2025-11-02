@@ -1,0 +1,73 @@
+// components/MobilePlaceholder/style.module.scss
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 9999; // on top of everything
+}
+
+.textWrapper {
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.title {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 2px;
+  animation: float 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-top: 1rem;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+}
