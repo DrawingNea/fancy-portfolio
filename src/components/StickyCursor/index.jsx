@@ -83,6 +83,7 @@ export default function index({ stickyElement }) {
   };
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     stickyElement.current.addEventListener('mouseenter', manageMouseOver);
     stickyElement.current.addEventListener('mouseleave', manageMouseLeave);
     window.addEventListener('mousemove', manageMouseMove);

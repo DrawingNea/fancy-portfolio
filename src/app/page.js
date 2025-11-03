@@ -22,6 +22,7 @@ export default function Home() {
   const stickyElement = useRef(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const timer = setTimeout(() => {
       setIsLoading(false);
       document.body.style.cursor = 'default';
@@ -32,6 +33,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1200); // treat width <= 768 as mobile
     };

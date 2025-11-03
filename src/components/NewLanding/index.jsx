@@ -11,6 +11,8 @@ export default function NewLanding() {
   const arrowBtnRef = useRef(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: `.${styles.scrollDist}`,

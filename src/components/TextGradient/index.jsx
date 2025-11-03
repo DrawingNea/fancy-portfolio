@@ -18,6 +18,7 @@ export default function Index() {
   }, []);
 
   const createAnimation = () => {
+    if (typeof window === 'undefined') return;
     gsap.to(refs.current, {
       scrollTrigger: {
         trigger: container.current,

@@ -25,6 +25,7 @@ export default function Index() {
   };
 
   const getScrollProgress = () => {
+    if (typeof window === 'undefined') return;
     const scrollProgress =
       stickyMask.current.offsetTop /
       (container.current.getBoundingClientRect().height - window.innerHeight);

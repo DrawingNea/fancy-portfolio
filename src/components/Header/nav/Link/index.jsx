@@ -11,6 +11,7 @@ export default function Index({ data, isActive, setSelectedIndicator }) {
     e.preventDefault();
     const target = document.querySelector(data.href);
     if (!target) return;
+    if (typeof window === 'undefined') return;
 
     if (window.locoScroll) {
       window.locoScroll.scrollTo(target, {

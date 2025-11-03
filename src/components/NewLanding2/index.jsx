@@ -18,6 +18,8 @@ export default function HeroSection() {
   );
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -27,6 +29,7 @@ export default function HeroSection() {
   const txt2X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const nWaves = 5;
     const waves = [];
     const amp = 10;

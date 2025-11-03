@@ -19,6 +19,7 @@ export default function index() {
   const [copied, setCopied] = useState('');
 
   const handleMailClick = () => {
+    if (typeof window === 'undefined') return;
     window.location.href = 'mailto:Evelyn.Lindner@outlook.com';
   };
 

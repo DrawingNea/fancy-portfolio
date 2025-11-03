@@ -22,6 +22,8 @@ export default function index() {
   const [selectedIndicator, setSelectedIndicator] = useState('#home');
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const sections = navItems
       .map((item) => document.querySelector(item.href))
       .filter(Boolean);
