@@ -1,3 +1,4 @@
 const isProd = process.env.NODE_ENV === 'production';
+const repoName = '/fancy-portfolio';
 
-export const basePath = isProd ? process.env.NEXT_PUBLIC_BASE_PATH || '' : '';
+export const basePath = isProd ? repoName : '';

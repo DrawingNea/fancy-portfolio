@@ -1,11 +1,11 @@
 // next.config.mjs
 const isProd = process.env.NODE_ENV === 'production';
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const repoName = '/fancy-portfolio';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: isProd ? basePath : '',
-  assetPrefix: isProd ? basePath : '',
+  basePath: isProd ? repoName : '',
+  assetPrefix: isProd ? repoName : '',
   output: 'export',
   images: {
     unoptimized: true,
