@@ -36,9 +36,16 @@ export default function Index() {
 
   return (
     <div ref={container} className={styles.container}>
-      <div ref={stickyMask} className={styles.stickyMask}>
+      <div
+        ref={stickyMask}
+        className={styles.stickyMask}
+        style={{
+          maskImage: `url(${basePath}/medias/mask6.svg)`,
+          WebkitMaskImage: `url(${basePath}/medias/mask6.svg)`,
+        }}
+      >
         <video autoPlay muted loop>
-          <source src={`/fancy-portfolio/medias/swirl3.mp4`} type="video/mp4" />
+          <source src={`${basePath}/medias/swirl3.mp4`} type="video/mp4" />
         </video>
       </div>
     </div>
