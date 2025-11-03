@@ -5,9 +5,9 @@ import styles from './style.module.scss';
 import Magnetic from '../Magnetic/gsap';
 import Image from 'next/image';
 import Rounded from '../../common/RoundedButton';
+import portraitImg from '../../../public/images/portrait.png';
 
 export default function index() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -35,11 +35,7 @@ export default function index() {
         <div className={styles.title}>
           <span>
             <div className={styles.imageContainer}>
-              <Image
-                fill={true}
-                alt={'image'}
-                src={`${basePath}/images/portrait.png`}
-              />
+              <Image fill={true} alt={'image'} src={portraitImg} />
             </div>
             <h2>Let's work</h2>
           </span>

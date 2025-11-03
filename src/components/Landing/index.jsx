@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import { motion } from 'framer-motion';
 import { slideUp } from './animation';
 import { Fragment } from 'react';
+import backgroundImg from '../../../public/images/background6.jpg';
 
 const words = [
   'Frontend Developer',
@@ -13,7 +14,6 @@ const words = [
 ];
 
 export default function Home() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   return (
     <motion.main
       variants={slideUp}
@@ -21,11 +21,7 @@ export default function Home() {
       animate="enter"
       className={styles.landing}
     >
-      <Image
-        src={`${basePath}/images/background6.jpg`}
-        fill={true}
-        alt="background"
-      />
+      <Image src={backgroundImg} fill={true} alt="background" />
 
       {/* Text marquee section */}
       <div className={styles.sliderContainer}>

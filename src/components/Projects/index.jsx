@@ -6,29 +6,33 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Rounded from '../../common/RoundedButton';
+import teamheroImg from '../../../public/images/Teamhero.webp';
+import neatSeatImg from '../../../public/images/NeatSeat.png';
+import flexibbleImg from '../../../public/images/Flexibble.png';
+import carhubImg from '../../../public/images/CarHub.png';
 
 const projects = [
   {
     title: 'Teamhero',
-    src: 'Teamhero.webp',
+    src: teamheroImg,
     color: '#edf2fb',
     category: 'Design & Development',
   },
   {
     title: 'NeatSeat',
-    src: 'NeatSeat.png',
+    src: neatSeatImg,
     color: '#1b4332',
     category: 'Design & Development',
   },
   {
     title: 'Flexibble',
-    src: 'Flexibble.png',
+    src: flexibbleImg,
     color: '#240046',
     category: 'Online Course Project',
   },
   {
     title: 'CarHub',
-    src: 'CarHub.png',
+    src: carhubImg,
     color: '#03045e',
     category: 'Online Course Project',
   },
@@ -51,7 +55,6 @@ const scaleAnimation = {
 };
 
 export default function Home() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [modal, setModal] = useState({ active: false, index: 0 });
   const { active, index } = modal;
   const modalContainer = useRef(null);
@@ -148,12 +151,7 @@ export default function Home() {
                   style={{ backgroundColor: color }}
                   key={`modal_${index}`}
                 >
-                  <Image
-                    src={`${basePath}/images/${src}`}
-                    width={300}
-                    height={0}
-                    alt="image"
-                  />
+                  <Image src={src} width={300} height={0} alt="image" />
                 </div>
               );
             })}
