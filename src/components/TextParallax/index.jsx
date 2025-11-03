@@ -1,9 +1,7 @@
 'use client';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import Picture1 from '../../../public/images/piano.jpg';
-import Picture2 from '../../../public/images/pc.jpg';
-import Picture3 from '../../../public/images/book.jpg';
 import Lenis from 'lenis';
+import { basePath } from '../../../next.config.mjs';
 
 import styles from './style.module.scss';
 
@@ -33,21 +31,21 @@ export default function Index() {
       <div className={styles.spacerTop} />
       <div ref={container} className={styles.slideContainer}>
         <Slide
-          src={Picture1}
+          src={`${basePath}/images/piano.jpg`}
           direction="left"
           left="-40%"
           progress={scrollYProgress}
           title="Piano & Drums"
         />
         <Slide
-          src={Picture2}
+          src={`${basePath}/images/pc.jpg`}
           direction="right"
           left="-25%"
           progress={scrollYProgress}
           title="Gaming & Coding"
         />
         <Slide
-          src={Picture3}
+          src={`${basePath}/images/book.jpg`}
           direction="left"
           left="-75%"
           progress={scrollYProgress}

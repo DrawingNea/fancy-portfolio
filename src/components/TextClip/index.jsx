@@ -2,9 +2,9 @@
 
 import { useRef, useEffect } from 'react';
 import styles from './style.module.scss';
+import { basePath } from '../../../next.config.mjs';
 
 export default function Index() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const container = useRef(null);
   const stickyMask = useRef(null);
 
@@ -38,7 +38,7 @@ export default function Index() {
     <div ref={container} className={styles.container}>
       <div ref={stickyMask} className={styles.stickyMask}>
         <video autoPlay muted loop playsInline preload="auto">
-          <source src={`medias/swirl3.mp4`} type="video/mp4" />
+          <source src={`${basePath}/medias/swirl3.mp4`} type="video/mp4" />
         </video>
       </div>
     </div>

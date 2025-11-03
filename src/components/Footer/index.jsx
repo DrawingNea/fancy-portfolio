@@ -5,7 +5,7 @@ import styles from './style.module.scss';
 import Magnetic from '../Magnetic/gsap';
 import Image from 'next/image';
 import Rounded from '../../common/RoundedButton';
-import portraitImg from '../../../public/images/portrait.png';
+import { basePath } from '../../../next.config.mjs';
 
 export default function index() {
   const container = useRef(null);
@@ -35,7 +35,11 @@ export default function index() {
         <div className={styles.title}>
           <span>
             <div className={styles.imageContainer}>
-              <Image fill={true} alt={'image'} src={portraitImg} />
+              <Image
+                fill={true}
+                alt={'image'}
+                src={`${basePath}/images/portrait.png`}
+              />
             </div>
             <h2>Let's work</h2>
           </span>

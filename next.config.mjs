@@ -1,10 +1,14 @@
 const repoName = '/fancy-portfolio';
 
+const isProd = process.env.NODE_ENV === 'production';
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: repoName,
-  assetPrefix: repoName,
-  reactStrictMode: true,
+  basePath: isProd ? repoName : '',
   output: 'export',
+  images: {
+    unoptimized: true,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

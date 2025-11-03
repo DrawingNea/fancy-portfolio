@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { motion } from 'framer-motion';
 import { slideUp } from './animation';
 import { Fragment } from 'react';
-import backgroundImg from '../../../public/images/background6.jpg';
+import { basePath } from '../../../next.config.mjs';
 
 const words = [
   'Frontend Developer',
@@ -21,7 +21,11 @@ export default function Home() {
       animate="enter"
       className={styles.landing}
     >
-      <Image src={backgroundImg} fill={true} alt="background" />
+      <Image
+        src={`${basePath}/images/background6.jpg`}
+        fill={true}
+        alt="background"
+      />
 
       {/* Text marquee section */}
       <div className={styles.sliderContainer}>
