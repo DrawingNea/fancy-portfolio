@@ -1,9 +1,8 @@
-// components/MobilePlaceholder/index.jsx
 'use client';
 
 import styles from './style.module.scss';
 
-export default function MobilePlaceholder() {
+export default function MobileFlag() {
   return (
     <div className={styles.overlay}>
       <div className={styles.textWrapper}>
