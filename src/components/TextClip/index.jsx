@@ -1,8 +1,6 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import swirlVideo from '../../../public/media/swirl3.mp4';
-
 import styles from './style.module.scss';
 
 export default function Index() {
@@ -26,7 +24,7 @@ export default function Index() {
   };
 
   const getScrollProgress = () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return 0;
     const scrollProgress =
       stickyMask.current.offsetTop /
       (container.current.getBoundingClientRect().height - window.innerHeight);
@@ -35,11 +33,13 @@ export default function Index() {
     return easedScrollProgress;
   };
 
+  const basePath = '/fancy-portfolio'; // GitHub Pages repo prefix
+
   return (
     <div ref={container} className={styles.container}>
       <div ref={stickyMask} className={styles.stickyMask}>
         <video autoPlay muted loop>
-          <source src={swirlVideo} type="video/mp4" />
+          <source src={`${basePath}/medias/swirl3.mp4`} type="video/mp4" />
         </video>
       </div>
     </div>
