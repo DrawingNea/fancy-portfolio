@@ -1,1 +1,3 @@
-export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const isProd = process.env.NODE_ENV === 'production';
+
+export const basePath = isProd ? process.env.NEXT_PUBLIC_BASE_PATH || '' : '';
