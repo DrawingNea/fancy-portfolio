@@ -1,5 +1,4 @@
-/** @type {import('next').NextConfig} */
-const repoName = '/fancy-portfolio'; // replace with your GitHub repo name
+const repoName = '/fancy-portfolio';
 
 const nextConfig = {
   basePath: repoName,

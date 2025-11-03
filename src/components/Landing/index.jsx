@@ -13,6 +13,7 @@ const words = [
 ];
 
 export default function Home() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   return (
     <motion.main
       variants={slideUp}
@@ -20,7 +21,11 @@ export default function Home() {
       animate="enter"
       className={styles.landing}
     >
-      <Image src="/images/background6.jpg" fill={true} alt="background" />
+      <Image
+        src={`${basePath}/images/background6.jpg`}
+        fill={true}
+        alt="background"
+      />
 
       {/* Text marquee section */}
       <div className={styles.sliderContainer}>
