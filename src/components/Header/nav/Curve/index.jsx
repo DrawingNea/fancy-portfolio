@@ -1,14 +1,27 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 
 export default function Index() {
-  const initialPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${
-    window.innerHeight
-  } Q-100 ${window.innerHeight / 2} 100 0`;
-  const targetPath = `M100 0 L200 0 L200 ${window.innerHeight} L100 ${
-    window.innerHeight
-  } Q100 ${window.innerHeight / 2} 100 0`;
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setHeight(window.innerHeight);
+  }, []);
+
+  if (height === 0) {
+    return <svg className={styles.svgCurve}></svg>;
+  }
+
+  const initialPath = `M100 0 L200 0 L200 ${height} L100 ${height} Q-100 ${
+    height / 2
+  } 100 0`;
+  const targetPath = `M100 0 L200 0 L200 ${height} L100 ${height} Q100 ${
+    height / 2
+  } 100 0`;
 
   const curve = {
     initial: {
@@ -31,7 +44,7 @@ export default function Index() {
         initial="initial"
         animate="enter"
         exit="exit"
-      ></motion.path>
+      />
     </svg>
   );
 }

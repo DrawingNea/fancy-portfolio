@@ -10,26 +10,19 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function HeroSection() {
   const maskRef = useRef(null);
-  const cwRef = useRef(window.innerWidth);
-  const chRef = useRef(window.innerHeight);
-
-  const [screenWidth, setScreenWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
+  const [screenWidth, setScreenWidth] = useState(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    // Initialize screen width
+    setScreenWidth(window.innerWidth);
+
+    // Resize listener
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
-  const txt1X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
-  const txt2X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
+    // GSAP animations
     const nWaves = 5;
     const waves = [];
     const amp = 10;
@@ -40,11 +33,8 @@ export default function HeroSection() {
     const mask = maskRef.current;
     if (!mask) return;
 
-    // Function to create waves (only polygons)
     const createPolygons = () => {
-      // Remove only polygons, keep other elements (like <text>)
       mask.querySelectorAll('polygon').forEach((p) => p.remove());
-
       for (let w = 0; w < nWaves; w++) {
         const p = document.createElementNS(
           'http://www.w3.org/2000/svg',
@@ -53,21 +43,18 @@ export default function HeroSection() {
         waves[w] = p;
         mask.appendChild(p);
 
-        const fillAttr = w === 0 ? '#fff' : 'none';
-        const strokeAttr = w === 0 ? '' : '#fff';
-        const strokeDasharray = w === 0 ? '' : '2 4';
-        const strokeWidth = w === 0 ? '' : `${3 - (w / nWaves) * 3}`;
-
-        p.setAttribute('fill', fillAttr);
-        if (w !== 0) {
-          p.setAttribute('stroke', strokeAttr);
-          p.setAttribute('stroke-dasharray', strokeDasharray);
-          p.setAttribute('stroke-width', strokeWidth);
+        if (w === 0) {
+          p.setAttribute('fill', '#fff');
+        } else {
+          p.setAttribute('fill', 'none');
+          p.setAttribute('stroke', '#fff');
+          p.setAttribute('stroke-dasharray', '2 4');
+          p.setAttribute('stroke-width', `${3 - (w / nWaves) * 3}`);
         }
       }
     };
 
-    createPolygons(); // initial polygons
+    createPolygons();
 
     const cwRef = { current: window.innerWidth };
     const chRef = { current: window.innerHeight };
@@ -105,21 +92,25 @@ export default function HeroSection() {
       });
     });
 
-    const handleResize = () => {
+    const handleResizePolygons = () => {
       cwRef.current = window.innerWidth;
       chRef.current = window.innerHeight;
-      createPolygons(); // recreate polygons for new width/height
-      ScrollTrigger.refresh(); // refresh scroll triggers
+      createPolygons();
+      ScrollTrigger.refresh();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResizePolygons);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResizePolygons);
       gsap.ticker.remove();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  const txt1X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
+  const txt2X = screenWidth < 480 ? 200 : screenWidth < 768 ? 120 : -200;
 
   return (
     <section className={styles.hero}>
