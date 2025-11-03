@@ -1,7 +1,7 @@
 'use client';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import Lenis from 'lenis';
-import { basePath } from '../../../next.config.mjs';
+import { basePath } from '@/lib/config';
 
 import styles from './style.module.scss';
 

@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { motion } from 'framer-motion';
 import { slideUp } from './animation';
 import { Fragment } from 'react';
-import { basePath } from '../../../next.config.mjs';
+import { basePath } from '@/lib/config';
 
 const words = [
   'Frontend Developer',

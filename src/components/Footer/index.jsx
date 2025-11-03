@@ -5,7 +5,7 @@ import styles from './style.module.scss';
 import Magnetic from '../Magnetic/gsap';
 import Image from 'next/image';
 import Rounded from '../../common/RoundedButton';
-import { basePath } from '../../../next.config.mjs';
+import { basePath } from '@/lib/config';
 
 export default function index() {
   const container = useRef(null);

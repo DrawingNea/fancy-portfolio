@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import styles from './style.module.scss';
-import { basePath } from '../../../next.config.mjs';
+import { basePath } from '@/lib/config';
 
 export default function Index() {
   const container = useRef(null);
