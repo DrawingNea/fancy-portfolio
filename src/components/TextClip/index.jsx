@@ -37,7 +37,7 @@ export default function Index() {
   return (
     <div ref={container} className={styles.container}>
       <div ref={stickyMask} className={styles.stickyMask}>
-        <video autoPlay muted loop>
+        <video autoPlay muted loop playsInline preload="auto">
           <source src={`medias/swirl3.mp4`} type="video/mp4" />
         </video>
       </div>
