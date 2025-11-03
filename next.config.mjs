@@ -1,3 +1,4 @@
+// next.config.mjs
 const repoName = '/fancy-portfolio';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -11,4 +12,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
