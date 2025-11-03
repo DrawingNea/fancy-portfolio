@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import styles from './style.module.scss';
 
 export default function Index() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const container = useRef(null);
   const stickyMask = useRef(null);
 
@@ -32,8 +33,6 @@ export default function Index() {
     easedScrollProgress += delta * easing;
     return easedScrollProgress;
   };
-
-  const basePath = '/fancy-portfolio'; // GitHub Pages repo prefix
 
   return (
     <div ref={container} className={styles.container}>
