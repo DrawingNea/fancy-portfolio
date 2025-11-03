@@ -145,6 +145,7 @@ export default function HeroSection() {
               y="0"
               fill="#fff"
               letterSpacing="0.15"
+              wordSpacing="20"
             >
               FRONTEND DEVELOPER
             </text>

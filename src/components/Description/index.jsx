@@ -5,7 +5,7 @@ import { slideUp, opacity } from './animation';
 import Rounded from '../../common/RoundedButton';
 export default function index() {
   const phrase =
-    'Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.';
+    'I like taking ideas and bringing them to life, discovering new challenges as I go. Each project is a chance to learn something new and push myself a little further.';
   const description = useRef(null);
   const isInView = useInView(description);
   return (
@@ -28,13 +28,22 @@ export default function index() {
           })}
         </p>
         <motion.p variants={opacity} animate={isInView ? 'open' : 'closed'}>
-          The combination of my passion for design, code & interaction positions
-          me in a unique place in the web design world.
+          By blending design, code, and a sense of curiosity, I create web
+          experiences that stand out and feel alive.
         </motion.p>
         <div data-scroll data-scroll-speed={0.1}>
-          <Rounded className={styles.button}>
-            <p>About me</p>
-          </Rounded>
+          <a
+            href="https://drawingnea.github.io/portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Rounded
+              className={styles.button}
+              href="https://drawingnea.github.io/portfolio/"
+            >
+              <p>About me</p>
+            </Rounded>
+          </a>
         </div>
       </div>
     </div>
