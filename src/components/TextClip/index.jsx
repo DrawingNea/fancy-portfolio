@@ -38,7 +38,10 @@ export default function Index() {
     <div ref={container} className={styles.container}>
       <div ref={stickyMask} className={styles.stickyMask}>
         <video autoPlay muted loop>
-          <source src={`${basePath}/medias/swirl3.mp4`} type="video/mp4" />
+          <source
+            src={`https://drawingnea.github.io/fancy-portfolio/medias/swirl3.mp4`}
+            type="video/mp4"
+          />
         </video>
       </div>
     </div>
