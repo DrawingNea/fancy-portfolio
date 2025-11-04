@@ -14,6 +14,7 @@ import Footer from '../components/Footer';
 import Projects from '../components/Projects';
 import TextSlider from '@/components/TextSlider';
 import NewLanding2 from '@/components/NewLanding2';
+import styles from './page.module.scss';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,17 +34,38 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1200); // treat width <= 768 as mobile
+    if (typeof window === 'undefined' || typeof navigator === 'undefined')
+      return;
+
+    const checkIsMobile = () => {
+      const isMobileDevice =
+        /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const isSmallScreen = window.innerWidth <= 1200;
+
+      setIsMobile(isMobileDevice || isSmallScreen);
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    // Initial check
+    checkIsMobile();
+
+    // Update on resize
+    window.addEventListener('resize', checkIsMobile);
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
   return (
-    <main data-scroll-container>
+    <main
+      data-scroll-container
+      style={{
+        overflow: isMobile ? 'hidden' : 'visible',
+        height: isMobile ? '100vh' : 'auto',
+        width: isMobile ? '100vw' : 'auto',
+      }}
+    >
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
@@ -51,30 +73,66 @@ export default function Home() {
       {!isLoading && <Header ref={stickyElement} />}
       {!isLoading && <StickyCursor stickyElement={stickyElement} />}
 
-      <section id="home" data-scroll-section>
+      <section
+        id="home"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'visible',
+        }}
+      >
         <NewLanding2 />
         <TextClip />
       </section>
 
-      <section id="about" data-scroll-section>
+      <section
+        id="about"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'auto',
+        }}
+      >
         <TextGradient />
       </section>
 
       <Description />
 
-      <section id="skills" data-scroll-section>
+      <section
+        id="skills"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'auto',
+        }}
+      >
         <TextSlider />
       </section>
 
-      <section id="work" data-scroll-section>
+      <section
+        id="work"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'auto',
+        }}
+      >
         <Projects />
       </section>
 
-      <section id="hobbies" data-scroll-section>
+      <section
+        id="hobbies"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'auto',
+        }}
+      >
         <TextParallax />
       </section>
 
-      <section id="contact" data-scroll-section>
+      <section
+        id="contact"
+        data-scroll-section
+        style={{
+          overflow: isMobile ? 'hidden' : 'auto',
+        }}
+      >
         <Footer />
       </section>
 
