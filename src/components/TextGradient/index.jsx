@@ -23,7 +23,7 @@ export default function Index() {
       scrollTrigger: {
         trigger: container.current,
         scrub: 10,
-        start: `top`,
+        start: 'top center-=200',
         end: `+=${window.innerHeight / 10}`,
       },
       opacity: 1,
