@@ -93,10 +93,9 @@ export default function Home() {
         }}
       >
         <TextGradient />
+        <Description />
+        <CornerText />
       </section>
-
-      <Description />
-      <CornerText />
       <section
         id="skills"
         data-scroll-section
