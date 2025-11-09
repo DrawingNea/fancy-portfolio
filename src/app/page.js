@@ -15,6 +15,7 @@ import Projects from '../components/Projects';
 import TextSlider from '@/components/TextSlider';
 import NewLanding2 from '@/components/NewLanding2';
 import styles from './page.module.scss';
+import CornerText from '@/components/CornerText';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -95,7 +96,7 @@ export default function Home() {
       </section>
 
       <Description />
-
+      <CornerText />
       <section
         id="skills"
         data-scroll-section
